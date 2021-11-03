@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Log.create!(src: "10.39.39.1", dst: "4.5.6.7")
+Log.create!(src: "10.39.39.1", dst: "4.5.6.7")
+Log.create!(src: "10.39.39.1", dst: "4.5.6.7")
+Log.create!(src: "10.39.39.1", dst: "4.5.6.7")
+Log.create!(src: "10.39.39.1", dst: "4.5.6.7")
+Log.create!(src: "10.39.39.1", dst: "4.5.6.7")
