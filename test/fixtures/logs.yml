@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  src: MyString
+  dst: MyString
+  src_valid: false
+  src_private: false
+  dst_valid: false
+  dst_private: false
+
+two:
+  src: MyString
+  dst: MyString
+  src_valid: false
+  src_private: false
+  dst_valid: false
+  dst_private: false
