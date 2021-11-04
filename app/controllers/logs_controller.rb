@@ -2,11 +2,13 @@ class LogsController < ApplicationController
 
     skip_before_action :verify_authenticity_token
 
+    # GET all logs
     def index
         logs = Log.all
         render json: logs
     end
 
+    # POST new log
     def create
         new_log = params[:log].split
         dst_string = new_log.select {|piece| piece.include?("dst=")}
