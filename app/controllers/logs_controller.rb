@@ -5,29 +5,33 @@ class LogsController < ApplicationController
     # GET all logs
     def index
         logs = Log.all
-        render json: logs
+        render json: logs, include: :comments
+    end
+
+    # DELETE logs
+    def destroy
+        log = Log.find_by(id: params[:id])
+        log.destroy
+        render json: log
     end
 
     # POST new log
     def create
-        # byebug
         new_log = params[:log].split
         dst_string = new_log.select {|piece| piece.include?("dst=")}
         src_string = new_log.select {|piece| piece.include?("src=")}
         dst = dst_string[0].slice(4..-1)
         src = src_string[0].slice(4..-1)
-        src_valid = valid(src)
-        dst_valid = valid(dst)
+        src_valid = is_valid(src)
+        dst_valid = is_valid(dst)
         src_private = is_private(src)
         dst_private = is_private(dst)
-        # byebug
         log = Log.create(src: src, dst: dst, src_valid: src_valid, dst_valid: dst_valid, src_private: src_private, dst_private: dst_private)
         render json: log
     end
 
-    def valid(str)
+    def is_valid(str)
         array = str.split('.')
-        byebug
         if array.length != 4
             return false
         elsif array.any?{|x| x.to_i > 255 || x.to_i < 0}
@@ -39,7 +43,6 @@ class LogsController < ApplicationController
 
     def is_private(str)
         array = str.split('.')
-        # byebug
         if array[0] == "10"
             return true
         elsif array[0] == "192" && array[1] == "168"
